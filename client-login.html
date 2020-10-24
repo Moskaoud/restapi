@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>client-login</title>
+</head>
+
+<body>
+    <form onsubmit="return login()">
+        Username: <input type="text" name="username" id="username"><br />
+        Password: <input type="password" name="password" id="password"><br />
+        <hr>
+        <input type="submit" value="login">
+        <hr>
+    </form>
+    <script src="jquery.js"></script>
+
+    <script>
+        function login() {
+
+            var username = $('#username').val();
+            var password = $('#password').val();
+
+            $.post("http://localhost/RestAPI/login.php",
+                { username: username, password: password },
+                function (data) {  
+                    if (parseInt(data.flag) === 1) {
+                        alert("login success");
+                    }
+                    else {
+                        alert("login Fail");
+                    }
+                }, 'json');
+            return false;
+        }
+    </script>
+</body>
+
+</html>

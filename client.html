@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>client</title>
+</head>
+<body>
+    <ul id="blogs"></ul>
+    <script src="jquery.js"></script>
+
+    <script>
+        $( function(){
+            $.get("http://localhost/RestAPI/", function(data){
+                if(parseInt(data.flag) === 1){
+                    for(var i=0 ; i<data.data.length;i++){
+                    $('#blogs').append("<li>"+data.data[i].blog_title+"</li>");
+                    }
+                } else {
+                   // window.location.replace("http://stackoverflow.com");
+                    alert(data.msg);
+                }
+            }, 'json')
+        });
+    </script>
+</body>
+</html>
